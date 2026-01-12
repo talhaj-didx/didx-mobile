@@ -1,37 +1,26 @@
-import { Assets as NavigationAssets } from '@react-navigation/elements';
-import { DarkTheme, DefaultTheme } from '@react-navigation/native';
-import { Asset } from 'expo-asset';
-import { createURL } from 'expo-linking';
 import * as SplashScreen from 'expo-splash-screen';
 import * as React from 'react';
-import { useColorScheme } from 'react-native';
-import { Navigation } from './navigation';
-
-Asset.loadAsync([
-  ...NavigationAssets,
-  require('./assets/newspaper.png'),
-  require('./assets/bell.png'),
-]);
+import { NavigationContainer } from '@react-navigation/native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { AppNavigator } from './navigation/AppNavigator';
 
 SplashScreen.preventAutoHideAsync();
 
-const prefix = createURL('/');
-
 export function App() {
-  const colorScheme = useColorScheme();
+  React.useEffect(() => {
+    // Hide splash screen after a short delay to ensure everything is loaded
+    const timer = setTimeout(() => {
+      SplashScreen.hideAsync();
+    }, 1000);
 
-  const theme = colorScheme === 'dark' ? DarkTheme : DefaultTheme
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
-    <Navigation
-      theme={theme}
-      linking={{
-        enabled: 'auto',
-        prefixes: [prefix],
-      }}
-      onReady={() => {
-        SplashScreen.hideAsync();
-      }}
-    />
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <AppNavigator />
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 }

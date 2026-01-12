@@ -4,7 +4,7 @@
     "slug": "didx-mobile",
     "version": "1.0.0",
     "orientation": "default",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/didx-mobile-logo.png",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "scheme": "didxmobile",
@@ -14,7 +14,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/didx-mobile-logo.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.didxmobile"
@@ -22,13 +22,19 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
+    "splash": {
+      "image": "./assets/didx-mobile-logo.png",
+      "resizeMode": "native",
+      "backgroundColor": "#ffffff"
+    },
     "plugins": [
       "expo-asset",
       [
         "expo-splash-screen",
         {
           "backgroundColor": "#ffffff",
-          "image": "./assets/splash-icon.png"
+          "image": "./assets/didx-mobile-logo.png",
+          "resizeMode": "native"
         }
       ]
     ]
