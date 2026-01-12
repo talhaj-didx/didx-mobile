@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, Image } from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import { theme } from '../constants/theme';
 import { setOnboardingComplete } from '../utils/storage';
@@ -16,30 +16,36 @@ const slides = [
     title: 'Global Marketplace',
     text: 'Wholesale DIDs from 100+ countries',
     backgroundColor: theme.BACKGROUND,
+    image: require('../../assets/onboading-icons/global-marketplace.gif'),
   },
   {
     key: '2',
     title: 'Instant Provisioning',
     text: 'Purchase and configure in real-time',
     backgroundColor: theme.BACKGROUND,
+    image: require('../../assets/onboading-icons/instant-provisioning.gif'),
   },
   {
     key: '3',
     title: 'Real-time Stats',
     text: 'Manage CDRs and support tickets',
     backgroundColor: theme.BACKGROUND,
+    image: require('../../assets/onboading-icons/realtime-stats.gif'),
   },
 ];
 
 export const OnboardingScreen: React.FC<OnboardingScreenProps> = ({ onDone }) => {
   const handleDone = async () => {
-    await setOnboardingComplete(true);
+    await setOnboardingComplete(false);  // should be true later
     onDone();
   };
 
   const renderItem = ({ item }: { item: typeof slides[0] }) => {
     return (
       <View style={[styles.slide, { backgroundColor: item.backgroundColor }]}>
+        {item.image && (
+          <Image source={item.image} style={styles.image} resizeMode="contain" />
+        )}
         <View style={styles.textContainer}>
           <Text style={styles.title}>{item.title}</Text>
           <Text style={styles.text}>{item.text}</Text>
@@ -75,6 +81,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: theme.SPACING.lg,
+  },
+  image: {
+    width: width * 0.7,
+    height: width * 0.7,
+    marginBottom: theme.SPACING.xl,
   },
   textContainer: {
     alignItems: 'center',

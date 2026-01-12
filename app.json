@@ -4,17 +4,19 @@
     "slug": "didx-mobile",
     "version": "1.0.0",
     "orientation": "default",
-    "icon": "./assets/didx-mobile-logo.png",
+    "icon": "./assets/didx-app-icon.png",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "scheme": "didxmobile",
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.didxmobile"
+      "bundleIdentifier": "com.didxmobile",
+      "icon": "./assets/didx-app-icon.png"
     },
     "android": {
+      "icon": "./assets/didx-app-icon-android.png",
       "adaptiveIcon": {
-        "foregroundImage": "./assets/didx-mobile-logo.png",
+        "foregroundImage": "./assets/didx-app-icon-android.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.didxmobile"
